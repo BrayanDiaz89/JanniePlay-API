@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.6'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.platzi.bdiaz'
+version = '1.0.0'
+description = 'Construir la API de Jannie Play usando Spring'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//Spring web
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	//Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+    // LangChain4j
+    implementation 'dev.langchain4j:langchain4j-open-ai-spring-boot-starter:1.0.0-beta1'
+    implementation 'dev.langchain4j:langchain4j-spring-boot-starter:1.0.0-beta1'
+	//Validation entries
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	//Database
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+    runtimeOnly 'org.postgresql:postgresql'
+	//MapStruct
+	implementation 'org.mapstruct:mapstruct:1.6.3'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+	//Documentación OpenApi
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

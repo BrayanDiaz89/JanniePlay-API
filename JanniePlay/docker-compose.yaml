@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB} #En .env definimos las variables entorno y lo añadimos a .gitignore
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '5433:5432'
+    volumes:
+      - pgdata:/data/postgresql
+volumes:
+  pgdata:
